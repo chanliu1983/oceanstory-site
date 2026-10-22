@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy — Oceanstory · Spice Empire</title>
+<meta name="description" content="Privacy Policy for Oceanstory · Spice Empire. The game is offline: no accounts, no analytics, no advertising, no network connections at all.">
+<style>
+  :root {
+    --bg: #0d1418;
+    --panel: #141d23;
+    --ink: #e9ece9;
+    --dim: #9db0b6;
+    --gold: #e0b74a;
+    --line: #243239;
+  }
+  @media (prefers-color-scheme: light) {
+    :root { --bg:#f7f6f1; --panel:#ffffff; --ink:#16202a; --dim:#5b6b71; --line:#dde5e3; }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue",
+          "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 40px 22px 96px; }
+  header { display: flex; align-items: flex-start; gap: 16px; flex-wrap: wrap;
+           border-bottom: 1px solid var(--line); padding-bottom: 22px; }
+  .brand { flex: 1 1 auto; min-width: 220px; }
+  h1 { font-size: 1.6rem; margin: 0 0 6px; letter-spacing: -0.01em; }
+  .sub { color: var(--dim); font-size: 0.92rem; margin: 0; }
+  .lang { display: inline-flex; border: 1px solid var(--line); border-radius: 999px;
+          overflow: hidden; background: var(--panel); }
+  .lang button {
+    appearance: none; border: 0; background: transparent; color: var(--dim);
+    font: inherit; font-size: 0.88rem; padding: 7px 16px; cursor: pointer;
+  }
+  .lang button[aria-pressed="true"] { background: var(--gold); color: #17191f; font-weight: 600; }
+  .lang button:focus-visible { outline: 2px solid var(--gold); outline-offset: -2px; }
+  h2 { font-size: 1.12rem; margin: 2.1em 0 .5em; letter-spacing: -0.005em; }
+  h2:first-of-type { margin-top: 1.7em; }
+  p, li { margin: 0 0 .85em; }
+  ul { padding-left: 1.25em; }
+  strong { font-weight: 650; }
+  .lead { font-size: 1.05rem; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+          padding: 16px 18px; margin: 0 0 1em; }
+  .card p:last-child { margin-bottom: 0; }
+  .meta { color: var(--dim); font-size: 0.86rem; margin-top: 3em;
+          padding-top: 16px; border-top: 1px solid var(--line); }
+  .meta a { color: var(--gold); }
+  .tag { display: inline-block; border: 1px solid var(--line); border-radius: 6px;
+         padding: 1px 8px; font-size: 0.8rem; color: var(--dim); }
+  code { background: var(--panel); border: 1px solid var(--line); border-radius: 5px;
+         padding: 1px 5px; font-size: 0.9em; }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="brand">
+    <h1 id="h-title">Privacy Policy</h1>
+    <p class="sub" id="h-sub">Oceanstory &middot; Spice Empire &middot; &copy; 2026 Lei Liu</p>
+  </div>
+  <div class="lang" role="group" aria-label="Language">
+    <button id="btn-en" type="button" aria-pressed="true">English</button>
+    <button id="btn-zh" type="button" aria-pressed="false">中文</button>
+  </div>
+</header>
+
+<main>
+
+<!-- ============================ ENGLISH ============================ -->
+<section id="en" lang="en">
+
+  <p class="lead"><strong>Oceanstory does not collect, store, transmit or sell any
+  personal data.</strong> The game never opens a network connection. There are no
+  accounts to create, no email address to give, and nothing is sent to the
+  developer — or anywhere else.</p>
+
+  <div class="card">
+    <p><span class="tag">No accounts</span> <span class="tag">No network</span>
+       <span class="tag">No analytics</span> <span class="tag">No advertising</span>
+       <span class="tag">No in-app purchases</span> <span class="tag">No crash reporting</span></p>
+  </div>
+
+  <h2>1. Summary</h2>
+  <p>Oceanstory runs entirely on your own computer, offline. It has no sign-in, no
+  user accounts, no advertising SDKs, no analytics or telemetry library, and no
+  crash or error reporting. It contains no in-app purchases. The build contains no
+  third-party plugins at all.</p>
+  <p>You do not have to take this page's word for it either. The build ships with
+  <strong>no networking code and no third-party plugins at all</strong>: there is no
+  request, no socket and no tracker in it to switch off.</p>
+
+  <h2>2. What is stored on your device</h2>
+  <p>The game writes a small number of files to your own user data folder, in the
+  place the operating system gives every app. They stay on your computer, are
+  readable only by the game, and are never uploaded:</p>
+  <ul>
+    <li><strong>Settings</strong> — <code>ui_settings.cfg</code>: your interface
+    language and your graphics settings.</li>
+    <li><strong>Save slots</strong> — <code>spice_slot_0.json</code> through
+    <code>spice_slot_9.json</code>: the ten runs you can keep, each with its own
+    map, sea, towns, prices, cargo and calendar. A single older file,
+    <code>spice_world.json</code>, may also be present as a leftover from an
+    earlier version.</li>
+    <li><strong>Campaign progress</strong> — <code>season_meta.json</code>: the
+    things that survive a season, such as blueprint parts, what they unlocked and
+    which seasons you have played.</li>
+    <li><strong>Event cards</strong> — <code>events.json</code>: optional event
+    cards you or a tool have added. The game ships with its own card set and does
+    not need this file.</li>
+  </ul>
+  <p>Deleting the game removes them. There is no other local storage, no
+  cookie, and no identifier of any kind.</p>
+
+  <h2>3. Network connections</h2>
+  <p><strong>None.</strong> The game contains no networking code at all: no HTTP
+  requests, no sockets, no multiplayer, no update check, no crash upload. If you
+  play it with the network switched off, every feature still works.</p>
+  <p>The only thing that ever reaches the network is what <em>you</em> type into
+  a browser, and that is not the game.</p>
+
+  <h2>4. Third parties</h2>
+  <p>No analytics, advertising, attribution, crash-reporting or telemetry SDK is
+  included in the build, and the project pulls in no third-party plugin. The game
+  contacts no third party, because it contacts nobody.</p>
+
+  <h2>5. Children</h2>
+  <p>The game is suitable for all ages. It contains no blood, no nudity, no
+  user-generated content, no advertising and no in-app purchases, and it collects
+  no data, so it does not knowingly collect any personal information from
+  children.</p>
+
+  <h2>6. Your rights and control</h2>
+  <p>Because no data is collected, there is nothing for the developer to access,
+  correct, export or delete on your behalf. You have complete control: everything
+  the game stores is a file in your own folder, and deleting the game, or deleting
+  that folder, removes it permanently.</p>
+
+  <h2>7. Changes to this policy</h2>
+  <p>If a future version changes what the game transmits or stores, this page will
+  be updated before that version ships, and the effective date below will change.
+  Given the game has no networking code at all, that would be a significant
+  change, and this page would say so before the build that contains it.</p>
+
+  <h2>8. Contact</h2>
+  <p>Questions about this policy, or anything else about the game, can be raised as
+  an issue on this site's repository:
+  <a href="https://github.com/chanliu1983/oceanstory-site/issues/new">github.com/chanliu1983/oceanstory-site/issues</a>.
+  Issues may be written in English or Chinese.</p>
+
+  <p class="meta">Effective date: 22 October 2026. &copy; 2026 Lei Liu.</p>
+</section>
+
+<!-- ============================== 中文 ============================== -->
+<section id="zh" lang="zh-Hans" hidden>
+
+  <p class="lead"><strong>《海洋物语 · 香料帝国》不收集、不存储、不传输、不出售任何个人数据。</strong>
+  游戏<strong>从不建立任何网络连接</strong>。没有账号要注册，不需要邮箱，任何信息都不会发给开发者——
+  也不会发给任何别的地方。</p>
+
+  <div class="card">
+    <p><span class="tag">无账号</span> <span class="tag">无联网</span>
+       <span class="tag">无统计</span> <span class="tag">无广告</span>
+       <span class="tag">无内购</span> <span class="tag">无崩溃上报</span></p>
+  </div>
+
+  <h2>1. 摘要</h2>
+  <p>游戏完全在你的电脑上离线运行。没有登录，没有用户账号，没有广告 SDK，没有统计或遥测库，
+  也没有崩溃或错误上报。游戏不含内购，构建版本里没有任何第三方插件。</p>
+  <p>你也不必只信这一页：构建版本里<strong>一行联网代码、一个第三方插件都没有</strong>——
+  没有请求、没有 socket、没有统计脚本，也就没有"关掉"这回事。</p>
+
+  <h2>2. 存储在本机的数据</h2>
+  <p>游戏只会在你自己的用户数据目录里写几个文件。都留在你的电脑上，只有游戏能读取，永远不会上传：</p>
+  <ul>
+    <li><strong>设置</strong>——<code>ui_settings.cfg</code>：界面语言和画面设置。</li>
+    <li><strong>存档槽</strong>——<code>spice_slot_0.json</code> 到 <code>spice_slot_9.json</code>：
+    你留得下的十局，各自一张地图、那片海、那些城镇、那些价钱、货舱和日历。
+    另外可能还有一个旧版本留下的 <code>spice_world.json</code> 单档文件。</li>
+    <li><strong>战役进度</strong>——<code>season_meta.json</code>：跨季留存的东西，
+    比如蓝图零件、解锁了什么、玩过哪几季。</li>
+    <li><strong>事件卡</strong>——<code>events.json</code>：你或某个工具加入的可选事件卡。
+    游戏自带卡组，没有这个文件也能玩。</li>
+  </ul>
+  <p>删除游戏即一并删除。除此之外没有别的本地存储，没有 Cookie，没有任何标识符。</p>
+
+  <h2>3. 网络连接</h2>
+  <p><strong>没有。</strong>游戏里没有任何联网代码：没有 HTTP 请求、没有 socket、没有联机、
+  没有更新检查、没有崩溃上传。断网玩，所有功能照常。</p>
+  <p>唯一会走上网络的东西，是<em>你</em>自己在浏览器里敲的东西——而那不是游戏。</p>
+
+  <h2>4. 第三方</h2>
+  <p>构建版本中不包含任何统计、广告、归因、崩溃上报或遥测 SDK，项目也没有引入任何第三方插件。
+  游戏不联系任何第三方，因为它谁也不联系。</p>
+
+  <h2>5. 儿童</h2>
+  <p>本游戏适合全年龄。内容无血腥、无裸露、无用户生成内容、无广告、无内购。
+  由于不收集任何数据，本游戏不会有意收集儿童的个人信息。</p>
+
+  <h2>6. 你的权利与控制</h2>
+  <p>因为不收集任何数据，开发者手上没有任何可供访问、更正、导出或删除的内容。完全的控制权在你：
+  游戏存储的一切都是你自己目录下的文件，删除游戏或删除该目录即可彻底清除。</p>
+
+  <h2>7. 政策变更</h2>
+  <p>如果未来的版本改变了游戏的传输或存储内容，本页面会在该版本发布前更新，下方的生效日期也会随之改变。
+  鉴于游戏现在一行联网代码都没有，那会是一次很大的改动——而带它上线之前，这一页会先写清楚。</p>
+
+  <h2>8. 联系方式</h2>
+  <p>关于本政策或游戏的任何疑问，都可以在本站的仓库提 issue：
+  <a href="https://github.com/chanliu1983/oceanstory-site/issues/new">github.com/chanliu1983/oceanstory-site/issues</a>。
+  使用中文或英文提交都可以。</p>
+
+  <p class="meta">生效日期：2026 年 10 月 22 日。© 2026 Lei Liu，保留所有权利。</p>
+</section>
+
+</main>
+</div>
+
+<script>
+(function () {
+  var en = document.getElementById('en');
+  var zh = document.getElementById('zh');
+  var btnEn = document.getElementById('btn-en');
+  var btnZh = document.getElementById('btn-zh');
+  var title = document.getElementById('h-title');
+
+  // English by default, and English is what stays visible if this script
+  // never runs: the <section id="zh" hidden> attribute means a JS-disabled
+  // reader still gets a complete policy rather than a blank page.
+  function set(lang) {
+    var z = lang === 'zh';
+    en.hidden = z;
+    zh.hidden = !z;
+    btnEn.setAttribute('aria-pressed', String(!z));
+    btnZh.setAttribute('aria-pressed', String(z));
+    document.documentElement.lang = z ? 'zh-Hans' : 'en';
+    title.textContent = z ? '隐私政策' : 'Privacy Policy';
+  }
+
+  btnEn.addEventListener('click', function () { set('en'); });
+  btnZh.addEventListener('click', function () { set('zh'); });
+})();
+</script>
+</body>
+</html>

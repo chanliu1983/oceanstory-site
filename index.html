@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Oceanstory · Spice Empire — a sailing roguelike in the 17th-century Spice Islands</title>
+<meta name="description" content="A sailing roguelike in the 17th-century Spice Islands. Read the prices, pick the port, beat the monsoon. The world keeps trading while you sail.">
+<meta property="og:title" content="Oceanstory · Spice Empire">
+<meta property="og:description" content="Read the prices, pick the port, beat the monsoon — a sailing roguelike in the 17th-century Spice Islands.">
+<meta property="og:image" content="assets/01-title.jpg">
+<style>
+  :root {
+    --bg:#0d1418; --panel:#141d23; --panel2:#1a262d; --ink:#e9ece9;
+    --dim:#9db0b6; --gold:#e0b74a; --teal:#5fb0a8; --line:#243239;
+  }
+  @media (prefers-color-scheme: light) {
+    :root { --bg:#f7f6f1; --panel:#fff; --panel2:#eef2f1; --ink:#16202a;
+            --dim:#5b6b71; --gold:#96711a; --teal:#2f7d76; --line:#dde5e3; }
+  }
+  * { box-sizing:border-box; }
+  body {
+    margin:0; background:var(--bg); color:var(--ink);
+    font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",
+         "PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap { max-width:1040px; margin:0 auto; padding:0 22px; }
+  header.top {
+    display:flex; align-items:center; gap:16px; flex-wrap:wrap;
+    padding:22px 0; border-bottom:1px solid var(--line);
+  }
+  .logo { font-weight:700; letter-spacing:.14em; font-size:.86rem; flex:1 1 auto; }
+  .lang { display:inline-flex; border:1px solid var(--line); border-radius:999px;
+          overflow:hidden; background:var(--panel); }
+  .lang button { appearance:none; border:0; background:transparent; color:var(--dim);
+    font:inherit; font-size:.85rem; padding:7px 15px; cursor:pointer; }
+  .lang button[aria-pressed="true"] { background:var(--gold); color:#17191f; font-weight:600; }
+  .lang button:focus-visible { outline:2px solid var(--gold); outline-offset:-2px; }
+
+  .hero { padding:74px 0 56px; text-align:center; }
+  .hero h1 {
+    margin:0 0 14px; font-size:clamp(2.4rem,7vw,4.2rem); line-height:1.02;
+    letter-spacing:-.025em; font-weight:800;
+  }
+  .hero h1 .accent { color:var(--gold); }
+  .hero p.tag { margin:0 auto 30px; max-width:34em; font-size:1.14rem; color:var(--dim); }
+  .cta { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+  .cta a {
+    display:inline-block; text-decoration:none; border-radius:999px;
+    padding:11px 24px; font-size:.95rem; font-weight:600;
+    border:1px solid var(--line); color:var(--ink); background:var(--panel);
+  }
+  .cta a.primary { background:var(--gold); border-color:var(--gold); color:#17191f; }
+  .cta a:hover { border-color:var(--gold); }
+
+  figure { margin:0; }
+  figure img {
+    display:block; width:100%; height:auto; border-radius:12px;
+    border:1px solid var(--line); background:var(--panel2);
+  }
+  figcaption { margin-top:10px; font-size:.9rem; color:var(--dim); text-align:center; }
+  .shot { margin:0 0 34px; }
+  .gallery { display:grid; gap:20px; grid-template-columns:repeat(auto-fit,minmax(272px,1fr)); }
+  .gallery figure { margin:0; }
+  .gallery figcaption { margin-top:9px; font-size:.86rem; }
+
+  section { padding:52px 0; border-top:1px solid var(--line); }
+  h2 { font-size:clamp(1.5rem,3.6vw,2rem); margin:0 0 18px; letter-spacing:-.02em; }
+  h3 { font-size:1.05rem; margin:0 0 4px; }
+  .lede { font-size:1.06rem; color:var(--dim); max-width:44em; margin:0 0 28px; }
+  .cols { display:grid; gap:14px; grid-template-columns:repeat(auto-fit,minmax(232px,1fr)); }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:11px; padding:18px; }
+  .card p { margin:0; font-size:.94rem; color:var(--dim); }
+  .card p + p { margin-top:9px; }
+  .card .who { color:var(--ink); font-weight:650; margin:0 0 2px; }
+  .card .role { font-size:.76rem; letter-spacing:.13em; color:var(--gold);
+                text-transform:uppercase; margin:0 0 9px; }
+  ul.plain { padding-left:1.2em; margin:0; }
+  ul.plain li { margin-bottom:9px; }
+  .stat { display:flex; gap:34px; flex-wrap:wrap; margin:0 0 26px; padding:0; list-style:none; }
+  .stat b { display:block; font-size:1.9rem; letter-spacing:-.02em; }
+  .stat span { font-size:.85rem; color:var(--dim); }
+  .check { display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); }
+  .daystrip { display:grid; gap:10px; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); }
+  .daystrip figure { margin:0; }
+  .daystrip img { display:block; width:100%; height:auto; border-radius:9px;
+                  border:1px solid var(--line); background:var(--panel2); }
+  .daystrip figcaption { margin-top:6px; font-size:.8rem; color:var(--dim); }
+  .check div { background:var(--panel); border:1px solid var(--line); border-left:3px solid var(--teal);
+               border-radius:10px; padding:14px 16px; }
+  .check b { display:block; margin-bottom:3px; }
+  .check span { color:var(--dim); font-size:.9rem; }
+
+  footer { border-top:1px solid var(--line); padding:38px 0 60px; color:var(--dim); font-size:.92rem; }
+  footer a { color:var(--gold); }
+  footer .row { display:flex; gap:22px; flex-wrap:wrap; margin-bottom:14px; }
+  [hidden] { display:none !important; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div class="logo">OCEANSTORY · SPICE EMPIRE</div>
+  <div class="lang" role="group" aria-label="Language">
+    <button id="btn-en" type="button" aria-pressed="true">English</button>
+    <button id="btn-zh" type="button" aria-pressed="false">中文</button>
+  </div>
+</header>
+
+<!-- ============================ ENGLISH ============================ -->
+<main id="en" lang="en">
+
+  <div class="hero">
+    <h1>Read the prices.<br>Pick the port.<br>Beat the <span class="accent">monsoon</span>.</h1>
+    <p class="tag">A sailing roguelike in the 17th-century Spice Islands. A chain of contracts,
+    a window of thirty days, and an archipelago that keeps trading — and keeps evolving —
+    long after you stop looking at it.</p>
+    <div class="cta">
+      <a class="primary" href="https://github.com/chanliu1983/oceanstory-site/issues/new">Report a problem</a>
+      <a href="privacy.html">Privacy policy</a>
+    </div>
+  </div>
+
+  <figure class="shot">
+    <img src="assets/01-title.jpg" width="1600" height="1000"
+         alt="The title screen: a painted archipelago of volcanic islands at dusk, a single-masted ship in the foreground, and the gold OCEANSTORY SPICE EMPIRE title.">
+  </figure>
+
+  <section>
+    <h2>One season, one window</h2>
+    <p class="lede">A season is one long voyage. The contracts arrive as a route, not a
+    list: at every port you are offered two or three ways on, each with its own days
+    at sea, its own pay and its own rumours. The monsoon closes the window, and when
+    it closes the season ends with whatever you are holding.</p>
+    <ul class="stat">
+      <li><b>30 / 60 / 90</b><span>days in a season</span></li>
+      <li><b>2–3</b><span>ports offered each stop</span></li>
+      <li><b>5</b><span>ways to win</span></li>
+      <li><b>1</b><span>monsoon window</span></li>
+    </ul>
+    <p class="lede">Five checklists sit on the tactical map. Finish any one of them before
+    the window shuts, and the season is yours.</p>
+    <div class="check">
+      <div><b>Lord</b><span>Sink the season's pirate king, take his treasure, deliver it.</span></div>
+      <div><b>Trade</b><span>Grow a fortune, hold a quarter of two merchant houses, profit at sea.</span></div>
+      <div><b>Diplomacy</b><span>Two powers allied, a relic given, a noble escorted home.</span></div>
+      <div><b>Legend</b><span>Most of the islands visited, the old places' secrets, the relics.</span></div>
+      <div><b>Spice</b><span>Three plantations owned, harvested, and supplied to the ports.</span></div>
+    </div>
+  </section>
+
+  <figure class="shot">
+    <img src="assets/02-route.jpg" width="1600" height="1000"
+         alt="The route card: the next port offered, the days at sea, the pay, and the rumours waiting there.">
+    <figcaption>Every stop offers a choice — the days, the pay and what the wind is saying about it.</figcaption>
+  </figure>
+
+  <section>
+    <h2>The world moves while you sail</h2>
+    <p class="lede">Prices are not a table. People eat, leave and arrive; a town that cannot
+    feed its people empties out and takes its prices with it; powers go to war over a
+    harbour and put a blockade on the road you were planning to use.</p>
+    <div class="cols">
+      <div class="card">
+        <p class="who">A town that leaves</p>
+        <p>Population moves when a place stops being livable — famine, war, prices, crowding.
+        They go slowly, they need ships, and they can be cut off. Two months later the
+        price you were going to sell at is gone, because half the harbour moved.</p>
+      </div>
+      <div class="card">
+        <p class="who">Powers that want more</p>
+        <p>Every faction watches the map for what it does not have. Grudges, ambition and
+        weakness add up to a war, and a war is a line on the map: blockades, sieges, tariffs
+        and a closed port you were counting on.</p>
+      </div>
+      <div class="card">
+        <p class="who">Ships that trade without you</p>
+        <p>Twelve merchant hulls read the same prices you do and arbitrage the difference
+        between two islands. Whatever edge you had when you left, they were already closing
+        it when you arrived.</p>
+      </div>
+      <div class="card">
+        <p class="who">Rumours that are old</p>
+        <p>The map only shows what you could know. A price you saw ten days ago is a
+        question mark; one from yesterday is solid. Buy intelligence at a port and you
+        get a fresher number — and a worse one.</p>
+      </div>
+    </div>
+  </section>
+
+  <figure class="shot">
+    <img src="assets/03-tactical.jpg" width="1600" height="1000"
+         alt="The tactical map: towns, faction borders and the shipping lanes between them, with the player's own knowledge drawn on it.">
+    <figcaption>The tactical map. Four layers: towns, powers, shipping lanes, rumours.</figcaption>
+  </figure>
+
+  <section>
+    <h2>Six hulls, and what happens to them</h2>
+    <p class="lede">You start small on purpose. The caravel is free, the longship is free,
+    and everything else is money you have not earned yet — the merchantman costs fifteen
+    hundred the moment you look at it, and the warship, the treasure ship and the ship of
+    the line are bought at the yard.</p>
+    <div class="cols">
+      <div class="card"><p class="role">Caravel</p><p class="who">One mast, one square sail</p>
+        <p>Twelve metres, quick, cheap, and the only ship in the game small enough to hide
+        with. It cannot carry much and it will not win a fight.</p></div>
+      <div class="card"><p class="role">Longship</p><p class="who">Low in the water, shields on the rail</p>
+        <p>Fast, shallow-draught, and hard to see coming. The cheap way to be somewhere
+        before anyone else.</p></div>
+      <div class="card"><p class="role">Merchantman</p><p class="who">Plump, two masts, cream sails</p>
+        <p>A hold worth filling. Slow, and it turns over in a bad sea, but the cargo pays
+        for everything else in this list.</p></div>
+      <div class="card"><p class="role">Warship</p><p class="who">Grey hull, dark sails, gun ports</p>
+        <p>Broadside on both sides, loaded separately. More guns means more gunners, more
+        food, and a longer way round every corner.</p></div>
+      <div class="card"><p class="role">Treasure ship</p><p class="who">Red sails, a pagoda on her stern</p>
+        <p>The old empire's hull: gold carving, a stern pavilion, and the biggest hold in
+        the archipelago.</p></div>
+      <div class="card"><p class="role">Ship of the line</p><p class="who">Three tall masts, blue sails</p>
+        <p>The largest hull afloat, and the slowest thing in it. Built to be found and
+        fought, not to sail between two islands.</p></div>
+    </div>
+  </section>
+
+  <figure class="shot">
+    <img src="assets/04-ships.jpg" width="1600" height="1000"
+         alt="A hull with red sails crossing the water at sunset, the sun's reflection running out toward the horizon.">
+    <figcaption>Six hulls under sail. Every one of them eats water and food, every day, at sea.</figcaption>
+  </figure>
+
+  <section>
+    <h2>Everything has a weight</h2>
+    <p class="lede">Fresh water is heavier than gold. A hold full of water is a slow ship,
+    a ship full of gold is a fast one, and both of them are thirsty. Provisions are drawn
+    from your own cargo: grain and meat for the crew, water for everyone, and not enough
+    of either if you take the long way round.</p>
+    <div class="cols">
+      <div class="card">
+        <p class="who">The broadside</p>
+        <p>Left and right sides load separately. A gun takes four seconds and gunners, and
+        a hull with more guns needs more of them — so the shot that empties a gun locker
+        also empties the water barrel.</p>
+      </div>
+      <div class="card">
+        <p class="who">Three kinds of shot</p>
+        <p>Round shot breaks hulls. Grape shreds sails and kills crew, and it is the only
+        thing in the game that touches a ghost. Explosive wrecks the rudder. Switch with
+        one key.</p>
+      </div>
+      <div class="card">
+        <p class="who">Damage that stays</p>
+        <p>Grape goes into the sails, explosive into the rudder, and both keep working on
+        you until they are repaired at a yard. Stripped canvas, a dead helm and a hole in
+        the hull are three different problems with three different prices.</p>
+      </div>
+      <div class="card">
+        <p class="who">Scurvy</p>
+        <p>Five days of nothing but meat and the crew starts to fail — slower ship, fewer
+        hands. Eat grain and they come back. Or sail into a port and they recover on
+        their own.</p>
+      </div>
+    </div>
+  </section>
+
+  <figure class="shot">
+    <img src="assets/05-broadside.jpg" width="1600" height="1000"
+         alt="A man-of-war on the open sea with the smoke of her last broadside still hanging over the deck.">
+    <figcaption>Both sides, one at a time. The gun deck is the only warm place on the ship.</figcaption>
+  </figure>
+
+  <section>
+    <h2>Every screen, on one page</h2>
+    <p class="lede">The codex, the shipyard, the chart, the tavern and the night watch —
+    the rest of what you will be looking at.</p>
+    <div class="gallery">
+      <figure>
+        <img src="assets/06-codex.jpg" width="1600" height="1000"
+             alt="The Codex: a page about a ship with a painted picture of the hull above the article text.">
+        <figcaption>The Codex — thirteen categories, a hundred entries, every one painted.</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/07-trade.jpg" width="1600" height="1000"
+             alt="Trading in a port: the goods on offer, the prices, and the cargo you are carrying.">
+        <figcaption>A harbour and its prices. The stock column is the whole game in one table.</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/08-storm.jpg" width="1600" height="1000"
+             alt="A storm over a harbour town: lightning on the water, the town's roofs lit below, a pirate lord's flag on the horizon.">
+        <figcaption>A storm over the harbour. The season's pirate king does not wait for you to be ready.</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/09-night.jpg" width="1600" height="1000"
+             alt="The ship at night, under a moonlit sky with the lanterns burning.">
+        <figcaption>Night watch. The stars are out and the sea is on its own.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <h2>A day passes over the archipelago</h2>
+    <p class="lede">Golden hour, sunset, the afterglow, blue hour, night, and the hour before
+    dawn. The sky is keyed to the clock, so a crossing that costs you a day costs you the
+    whole sky as well — and the long blue hours are when the other ships are out there too.</p>
+    <div class="daystrip">
+      <figure>
+        <img src="assets/day-1-golden.jpg" width="1600" height="1000" alt="Golden hour, the sun on the water">
+        <figcaption>Golden hour, the sun on the water</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/day-2-sunset.jpg" width="1600" height="1000" alt="Sunset, and a ship crossing the light">
+        <figcaption>Sunset, and a ship crossing the light</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/day-3-afterglow.jpg" width="1600" height="1000" alt="Afterglow, the last of the orange">
+        <figcaption>Afterglow, the last of the orange</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/day-4-blue.jpg" width="1600" height="1000" alt="Blue hour, the sky going cold">
+        <figcaption>Blue hour, the sky going cold</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/day-5-night.jpg" width="1600" height="1000" alt="Night, and the bioluminescence">
+        <figcaption>Night, and the bioluminescence</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/day-6-predawn.jpg" width="1600" height="1000" alt="Before dawn, the first grey">
+        <figcaption>Before dawn, the first grey</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <h2>Also in the box</h2>
+    <ul class="plain">
+      <li>A <strong>Codex</strong> of thirteen categories and about a hundred entries — goods, hulls, relics, powers, merchant houses, the islands — written from the world's own data.</li>
+      <li>Ten <strong>save slots</strong>, each on its own map. A new voyage retires the old runs; the campaign meta-progress across them stays.</li>
+      <li><strong>Keyboard and gamepad</strong>, both fully mapped. Sails, guns, charts and menus are all reachable without a mouse.</li>
+      <li><strong>English and Chinese</strong>, switchable at any time, from the main menu.</li>
+      <li>An archipelago that <strong>keeps evolving</strong> between runs: the harbours you emptied, the prices you broke and the ports you closed are all still there, waiting for the next season.</li>
+    </ul>
+  </section>
+</main>
+
+<!-- ============================== 中文 ============================== -->
+<main id="zh" lang="zh-Hans" hidden>
+
+  <div class="hero">
+    <h1>读数字。<br>择港口。<br>赶<span class="accent">季风</span>。</h1>
+    <p class="tag">17 世纪香料群岛上的航海 Roguelike。一条契约链，一扇三十天的窗，
+    以及一片你不再盯着、却仍在做生意、也仍在演化的海。</p>
+    <div class="cta">
+      <a class="primary" href="https://github.com/chanliu1983/oceanstory-site/issues/new">反馈问题</a>
+      <a href="privacy.html">隐私政策</a>
+    </div>
+  </div>
+
+  <figure class="shot">
+    <img src="assets/01-title-zh.jpg" width="1600" height="1000"
+         alt="标题画面：黄昏中的火山群岛，前景一艘带狮子船首像的帆船，金色的「海洋物语 · 香料帝国」标题，下面是中文菜单。">
+  </figure>
+
+  <section>
+    <h2>一季，一扇窗</h2>
+    <p class="lede">一季就是一趟长途。契约不是任务列表，而是一条路线：每到一个港，
+    给你两三个下一站的选择，各自有各的航行天数、各自的报酬、各自的传闻。季风会关窗，
+    窗一关，这季就以你手里剩下的东西结算。</p>
+    <ul class="stat">
+      <li><b>30 / 60 / 90</b><span>一季的天数</span></li>
+      <li><b>2–3</b><span>每站给的候选港</span></li>
+      <li><b>5</b><span>种赢法</span></li>
+      <li><b>1</b><span>扇季风窗</span></li>
+    </ul>
+    <p class="lede">战术图上摆着五张清单。窗关之前完成任意一张，这一季就是你的。</p>
+    <div class="check">
+      <div><b>海盗王</b><span>击沉本季的海盗王，捞起他的宝藏，送到目标港。</span></div>
+      <div><b>商业帝国</b><span>做大身家、拿下两家商会各四分之一、在海上赚到差价。</span></div>
+      <div><b>外交</b><span>两个势力结盟，献上一件孤品，把一位贵人护送回家。</span></div>
+      <div><b>传奇</b><span>到访大部分兴趣点，解开古迹的秘密，找齐孤品。</span></div>
+      <div><b>香料帝国</b><span>拥有三座香料庄园、收获成色、再供应给港口。</span></div>
+    </div>
+  </section>
+
+  <figure class="shot">
+    <img src="assets/02-route.jpg" width="1600" height="1000"
+         alt="路线卡：下一站的候选港、航行天数、报酬，以及那边等着你的传闻。">
+    <figcaption>每站都是一次选择——几天、多少钱，以及那边的风在说什么。</figcaption>
+  </figure>
+
+  <section>
+    <h2>你开船的时候，世界在动</h2>
+    <p class="lede">价格不是一张表。人要吃饭、会走、会来；一座养不活人的城会空掉，
+    价钱跟着走；势力会为一座 harbour 开战，把你本来打算走的路封起来。</p>
+    <div class="cols">
+      <div class="card">
+        <p class="who">会搬走的城</p>
+        <p>人往别处去，是因为这里待不下去了：饥荒、战争、物价、拥挤。搬得很慢，
+        要船，路上还能被截断。两个月后，你打算卖的那个价没有了——因为半个港口搬走了。</p>
+      </div>
+      <div class="card">
+        <p class="who">想要更多的势力</p>
+        <p>每个势力都在地图上看自己缺什么。旧怨、野心和破绽加总就是一场战争，
+        而战争是地图上的一条线：封锁、围城、关税禁运，以及一个你指望的港口关上了门。</p>
+      </div>
+      <div class="card">
+        <p class="who">不靠你的商船</p>
+        <p>十二艘商船读着和你一样的价，在两座岛之间套利。你出门时还有的那点差价，
+        等你到的时候已经被他们抹平了。</p>
+      </div>
+      <div class="card">
+        <p class="who">会变旧的传闻</p>
+        <p>地图只显示你可能知道的事。十天前的价是个问号，昨天的才是实心的。
+        在港口花钱买情报，能拿到更新——也更不准的数。</p>
+      </div>
+    </div>
+  </section>
+
+  <figure class="shot">
+    <img src="assets/03-tactical.jpg" width="1600" height="1000"
+         alt="战术地图：城镇、势力边界和它们之间的商路，画的是你自己知道的那部分。">
+    <figcaption>战术地图。城镇、势力、商路、传闻，四层。</figcaption>
+  </figure>
+
+  <section>
+    <h2>六种船，以及它们会出的事</h2>
+    <p class="lede">开局只能开小船，这是故意的。快帆船和维京长船免费，老式商船看一眼
+    就扣一千五；战舰、宝船、主力舰都得去船厂买。先赚钱换大船，再去打 boss。</p>
+    <div class="cols">
+      <div class="card"><p class="role">快帆船</p><p class="who">单桅，一面方帆</p>
+        <p>十二米，快、便宜，是全游戏唯一小到能藏起来的船。装不了多少东西，
+        也赢不了海战。</p></div>
+      <div class="card"><p class="role">维京长船</p><p class="who">吃水浅，舷边挂着圆盾</p>
+        <p>快、浅、从远处看不出来。最便宜的一种"先到一步"。</p></div>
+      <div class="card"><p class="role">老式商船</p><p class="who">肥舱，两桅奶白帆</p>
+        <p>一舱值得装满的货。慢，坏海里会翻，但货能付清单上其它所有东西的钱。</p></div>
+      <div class="card"><p class="role">战舰</p><p class="who">灰船身，黑帆，舷侧炮门</p>
+        <p>左右舷分别装填的舷炮。炮位越多，炮手越多，饭量和淡水也越多，
+        每个弯都要多绕一段路。</p></div>
+      <div class="card"><p class="role">宝船</p><p class="who">红帆，艉部一座宝塔</p>
+        <p>旧帝国的船身：金色雕花、艉楼亭阁，全群岛最大的货舱。</p></div>
+      <div class="card"><p class="role">主力舰</p><p class="who">三根高桅，深蓝帆</p>
+        <p>这片海上最大的船身，也是最慢的。是等着被找到、被打的东西，
+        不是用来在两座岛之间赶路的。</p></div>
+    </div>
+  </section>
+
+  <figure class="shot">
+    <img src="assets/04-ships.jpg" width="1600" height="1000"
+         alt="夕阳下的海面，一条带红帆的船正驶过，sun 的倒影一路铺到天边。">
+    <figcaption>六种船，张着帆。每一条每天都要在海上吃水、吃粮。</figcaption>
+  </figure>
+
+  <section>
+    <h2>每样东西都有重量</h2>
+    <p class="lede">淡水比黄金重。装满水的货舱是慢船，装满金的货舱是快船，
+    而两种船都渴。补给直接从你自己的货舱里出：主食和肉给船员，水给所有人，
+    绕远路的时候，它们都不够。</p>
+    <div class="cols">
+      <div class="card">
+        <p class="who">左右两舷的舷炮</p>
+        <p>两边分别装填，一门炮四秒，炮位越多要的人越多。弹柜打空的同时，
+        水桶也在空。</p>
+      </div>
+      <div class="card">
+        <p class="who">三种弹</p>
+        <p>实心弹破船体，葡萄弹撕帆和船员——也只有它碰得到幽灵，
+        爆破弹打舵。一个键切换。</p>
+      </div>
+      <div class="card">
+        <p class="who">会一直坏的损伤</p>
+        <p>葡萄弹打进帆里，爆破弹打进舵里，不修就一直坏。没了帆、没了舵、
+        船体破了，是三个问题、三个价钱。</p>
+      </div>
+      <div class="card">
+        <p class="who">坏血病</p>
+        <p>连吃五天荤，船员开始垮：船变慢，人变少。吃主食能回退，
+        或者开进港口，不治自愈。</p>
+      </div>
+    </div>
+  </section>
+
+  <figure class="shot">
+    <img src="assets/05-broadside.jpg" width="1600" height="1000"
+         alt="开阔海面上的战列舰，舷炮的烟还挂在甲板上方。">
+    <figcaption>两边轮流开火。炮舱是全船唯一暖和的地方。</figcaption>
+  </figure>
+
+  <section>
+    <h2>所有界面，一页看完</h2>
+    <p class="lede">百科、船厂、海图、酒馆和夜班——你接下来会看到的都在这里。</p>
+    <div class="gallery">
+      <figure>
+        <img src="assets/06-codex.jpg" width="1600" height="1000"
+             alt="百科：讲一条船的页面，上方是这艘船的画，下面是正文。">
+        <figcaption>百科——十三类、一百来条，每一条都配了画。</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/07-trade.jpg" width="1600" height="1000"
+             alt="在港口交易：在售的货、当前价格，以及你货舱里的存货。">
+        <figcaption>港口和它的价格。库存那一栏就是整个游戏。</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/08-storm.jpg" width="1600" height="1000"
+             alt="港口城镇上空的风暴：水面上打着闪电，下面的屋顶亮着灯，远处飘着海盗王的旗。">
+        <figcaption>风暴压在港口上。本季的海盗王不会等你准备好。</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/09-night.jpg" width="1600" height="1000"
+             alt="夜里的船：月光下的海面，桅灯亮着。">
+        <figcaption>夜班。星星出来了，海自己待着。</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <h2>一天就这样从群岛上过去</h2>
+    <p class="lede">黄金时刻、日落、余晖、蓝调、夜晚，然后是黎明前那一小时。天空是跟着钟走的，
+    所以花掉一天的航程，也会把一整天的天色一起花掉——而漫长的蓝调时刻，正是别的船也在海上的时候。</p>
+    <div class="daystrip">
+      <figure>
+        <img src="assets/day-1-golden.jpg" width="1600" height="1000" alt="黄金时刻，太阳压在水面上">
+        <figcaption>黄金时刻，太阳压在水面上</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/day-2-sunset.jpg" width="1600" height="1000" alt="日落，一条船穿过那片光">
+        <figcaption>日落，一条船穿过那片光</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/day-3-afterglow.jpg" width="1600" height="1000" alt="余晖，最后一点橙色">
+        <figcaption>余晖，最后一点橙色</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/day-4-blue.jpg" width="1600" height="1000" alt="蓝调时刻，天色转冷">
+        <figcaption>蓝调时刻，天色转冷</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/day-5-night.jpg" width="1600" height="1000" alt="夜，和海里的生物光">
+        <figcaption>夜，和海里的生物光</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/day-6-predawn.jpg" width="1600" height="1000" alt="黎明前，第一层灰">
+        <figcaption>黎明前，第一层灰</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <h2>还有这些</h2>
+    <ul class="plain">
+      <li>一本<strong>百科</strong>：十三类、一百来条——货物、船型、孤品、势力、商会、岛屿——内容由世界自己的数据生成。</li>
+      <li><strong>十个存档槽</strong>，各自一张地图。开新航程会清掉旧的局，
+        但跨局累积的战役进度留着。</li>
+      <li><strong>键盘和手柄</strong>，两套都全映射。帆、炮、海图和菜单，不碰鼠标也走得完。</li>
+      <li><strong>英文与中文</strong>，主菜单里随时切换。</li>
+      <li>一片<strong>还在继续演化</strong>的群岛：你掏空的港、抬崩的价、关掉的门，下一季都还在那儿。</li>
+    </ul>
+  </section>
+</main>
+
+<footer>
+  <div class="row">
+    <a href="privacy.html">Privacy policy / 隐私政策</a>
+    <a href="https://github.com/chanliu1983/oceanstory-site/issues/new">Report a problem / 反馈问题</a>
+    <a href="https://github.com/chanliu1983/oceanstory-site">This page's repository / 本页仓库</a>
+  </div>
+  <div id="foot-note">&copy; 2026 Lei Liu. All rights reserved.</div>
+</footer>
+
+</div>
+
+<script>
+(function () {
+  var en = document.getElementById('en');
+  var zh = document.getElementById('zh');
+  var btnEn = document.getElementById('btn-en');
+  var btnZh = document.getElementById('btn-zh');
+  var foot = document.getElementById('foot-note');
+  function set(lang) {
+    var z = lang === 'zh';
+    en.hidden = z;
+    zh.hidden = !z;
+    btnEn.setAttribute('aria-pressed', String(!z));
+    btnZh.setAttribute('aria-pressed', String(z));
+    document.documentElement.lang = z ? 'zh-Hans' : 'en';
+    foot.innerHTML = z ? '&copy; 2026 Lei Liu。保留所有权利。' : '&copy; 2026 Lei Liu. All rights reserved.';
+  }
+  btnEn.addEventListener('click', function () { set('en'); });
+  btnZh.addEventListener('click', function () { set('zh'); });
+  // English by default, and English is what stays visible if this script
+  // never runs: the <main id="zh" hidden> attribute means a JS-disabled
+  // reader still gets the whole page rather than a blank one.
+  set('en');
+})();
+</script>
+</body>
+</html>
