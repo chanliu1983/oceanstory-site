@@ -12,8 +12,9 @@ A sailing roguelike in the 17th-century Spice Islands: read the prices, pick the
 |---|---|
 | **Marketing page** | <https://chanliu1983.github.io/oceanstory-site/> |
 | **Privacy policy** | <https://chanliu1983.github.io/oceanstory-site/privacy.html> |
+| **Support page** | <https://chanliu1983.github.io/oceanstory-site/support.html> |
 
-Both are single static files with an in-page English / 中文 toggle. No cookies, no trackers, no external requests, no fonts pulled from anywhere.
+All three are single static files with an in-page English / 中文 toggle. No cookies, no trackers, no external requests, no fonts pulled from anywhere.
 
 ---
 
@@ -41,7 +42,7 @@ The more of this you give, the faster the answer:
 
 A few things that look like bugs but are the rules working:
 
-- **A new voyage retires your ten save slots.** Progress belongs to the map that was played, so starting a new run clears the board. The campaign progress across runs (`season_meta.json`) is kept.
+- **A new voyage retires the run you were playing, not the other nine.** Progress belongs to the map that was played, so the run you are in is over when you start a new one — but the other nine slots are still there, each on its own map. The campaign progress across runs (`season_meta.json`) is kept.
 - **A port can close.** If a faction hates you enough, its fort fires and the harbour stops trading. So can a war, a blockade or a shortage of food.
 - **Prices you remember are not prices you have.** The world moves while you sail. A price from ten days ago is a question mark on the tactical map; only what you saw recently, or bought as intelligence, is solid.
 - **Water is heavier than gold.** A hold full of fresh water is a slow ship, and a slow ship is a ship that runs out of water.
@@ -69,7 +70,7 @@ Raw, full-resolution captures live in [`/screenshots`](screenshots) — no text 
 The page also runs a **day-cycle strip** — golden hour, sunset, afterglow, blue hour,
 night, predawn — cut from the same captures (`assets/day-*.jpg`).
 
-App Store sized captures live in [`/appstore`](appstore) — eight shots in four sizes, with a contact sheet.
+App Store assets live in [`/appstore`](appstore): the ten product-page screenshots in English and Chinese at 2880×1800 — the size Apple wants, which it scales down to the other Mac sizes by itself — plus the 1920×1080 app preview video. The first three shots are the ones Apple shows in search results.
 
 ---
 
@@ -148,7 +149,7 @@ GitHub 的 issue 没有语言切换，但也不需要 —— 用哪种语言顺�
 | ![夜班](screenshots/09-night.png) | |
 | 夜班。星星出来了，海自己待着。 | |
 
-App Store 尺寸的截图在 [`/appstore`](appstore) 目录：八张图、四个尺寸，另有一张拼版。
+App Store 素材在 [`/appstore`](appstore)：中英文各十张产品页截图（2880×1800，Apple 要的尺寸，它会自己缩放到其它 Mac 尺寸），外加 1920×1080 的 App Preview 视频。前三张是 Apple 放在搜索结果里的。
 
 ---
 

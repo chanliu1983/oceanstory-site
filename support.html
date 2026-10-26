@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Support — Oceanstory · Spice Empire</title>
+<meta name="description" content="Support for Oceanstory · Spice Empire: how to get help, where your saves live, how to play, and what to do when something goes wrong.">
+<style>
+  :root {
+    --bg: #0d1418;
+    --panel: #141d23;
+    --ink: #e9ece9;
+    --dim: #9db0b6;
+    --gold: #e0b74a;
+    --line: #243239;
+  }
+  @media (prefers-color-scheme: light) {
+    :root { --bg:#f7f6f1; --panel:#ffffff; --ink:#16202a; --dim:#5b6b71; --gold:#96711a; --line:#dde5e3; }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue",
+          "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 40px 22px 96px; }
+  header { display: flex; align-items: flex-start; gap: 16px; flex-wrap: wrap;
+           border-bottom: 1px solid var(--line); padding-bottom: 22px; }
+  .brand { flex: 1 1 auto; min-width: 220px; }
+  h1 { font-size: 1.6rem; margin: 0 0 6px; letter-spacing: -0.01em; }
+  .sub { color: var(--dim); font-size: 0.92rem; margin: 0; }
+  .lang { display: inline-flex; border: 1px solid var(--line); border-radius: 999px;
+          overflow: hidden; background: var(--panel); }
+  .lang button {
+    appearance: none; border: 0; background: transparent; color: var(--dim);
+    font: inherit; font-size: 0.88rem; padding: 7px 16px; cursor: pointer;
+  }
+  .lang button[aria-pressed="true"] { background: var(--gold); color: #17191f; font-weight: 600; }
+  .lang button:focus-visible { outline: 2px solid var(--gold); outline-offset: -2px; }
+  h2 { font-size: 1.12rem; margin: 2.1em 0 .5em; letter-spacing: -0.005em; }
+  h2:first-of-type { margin-top: 1.7em; }
+  h3 { font-size: 1rem; margin: 1.5em 0 .35em; }
+  p, li { margin: 0 0 .85em; }
+  ul, ol { padding-left: 1.25em; }
+  strong { font-weight: 650; }
+  a { color: var(--gold); }
+  .lead { font-size: 1.05rem; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+          padding: 16px 18px; margin: 0 0 1em; }
+  .card p:last-child { margin-bottom: 0; }
+  .meta { color: var(--dim); font-size: 0.86rem; margin-top: 3em;
+          padding-top: 16px; border-top: 1px solid var(--line); }
+  .meta a { color: var(--gold); }
+  .tag { display: inline-block; border: 1px solid var(--line); border-radius: 6px;
+         padding: 1px 8px; font-size: 0.8rem; color: var(--dim); }
+  code { background: var(--panel); border: 1px solid var(--line); border-radius: 5px;
+         padding: 1px 5px; font-size: 0.9em; }
+  table { width: 100%; border-collapse: collapse; margin: 0 0 1em; font-size: 0.94rem; }
+  th, td { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--line);
+           vertical-align: top; }
+  th { color: var(--dim); font-weight: 600; }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="brand">
+    <h1 id="h-title">Support</h1>
+    <p class="sub" id="h-sub">Oceanstory &middot; Spice Empire &middot; &copy; 2026 Lei Liu</p>
+  </div>
+  <div class="lang" role="group" aria-label="Language">
+    <button id="btn-en" type="button" aria-pressed="true">English</button>
+    <button id="btn-zh" type="button" aria-pressed="false">中文</button>
+  </div>
+</header>
+
+<main>
+
+<!-- ============================ ENGLISH ============================ -->
+<section id="en" lang="en">
+
+  <p class="lead"><strong>Everything here works offline.</strong> The game has no
+  accounts, no servers and no network code at all, so "it cannot connect" is
+  never the problem: if the window is up, the game is running.</p>
+
+  <h2>1. Getting help</h2>
+  <p>Report a problem as an issue on this site's repository:
+  <a href="https://github.com/chanliu1983/oceanstory-site/issues/new">github.com/chanliu1983/oceanstory-site/issues</a>.
+  Issues may be written in English or Chinese. Please say what you were doing,
+  what you expected, and what happened instead &mdash; and if it is a visual
+  problem, attach a screenshot or a short screen recording. A screen recording
+  is easy to make: press <code>Shift</code> + <code>Cmd</code> + <code>5</code>
+  and pick a window.</p>
+
+  <h2>2. Requirements</h2>
+  <table>
+    <tr><th>macOS</th><td>13.0 or later (Ventura)</td></tr>
+    <tr><th>Processor</th><td>Apple silicon and Intel, both</td></tr>
+    <tr><th>Disk</th><td>About 300 MB</td></tr>
+    <tr><th>Network</th><td>Not required, and not used</td></tr>
+    <tr><th>Gamepad</th><td>Optional. Any standard Bluetooth or USB controller</td></tr>
+  </table>
+  <p>If the game will not open at all, open the Console app and launch it from
+  there, or run it from a terminal:
+  <code>/Applications/Oceanstory.app/Contents/MacOS/Oceanstory --quit-after 900</code>
+  The output tells you what went wrong. A Mac that is not connected to the
+  internet is not the cause of a failure to start.</p>
+
+  <h2>3. Controls</h2>
+  <table>
+    <tr><th>Sail and steer</th><td><code>W</code> / <code>A</code> / <code>S</code> / <code>D</code>, or the left stick</td></tr>
+    <tr><th>Zoom</th><td>Mouse wheel, <code>-</code> / <code>=</code>, or the right stick</td></tr>
+    <tr><th>Tactical chart</th><td><code>T</code></td></tr>
+    <tr><th>Ship panel</th><td><code>V</code></td></tr>
+    <tr><th>Codex</th><td><code>F1</code></td></tr>
+    <tr><th>Captain's log</th><td><code>L</code></td></tr>
+    <tr><th>Arm the guns</th><td><code>Space</code> (hold to charge, release to fire)</td></tr>
+    <tr><th>Menu / back</th><td><code>START</code> or <code>Esc</code></td></tr>
+    <tr><th>Key legend</th><td><code>?</code></td></tr>
+  </table>
+  <p>Every screen is reachable with the keyboard or a controller. The mouse is
+  never required &mdash; it is only a convenience for the chart and the menus.</p>
+
+  <h2>4. Interface language</h2>
+  <p>English and Chinese both ship in the same build. Switch at any time from
+  the main menu (Options), or from the pause menu while you are sailing. The
+  choice is remembered.</p>
+
+  <h2>5. Your saves</h2>
+  <p>Saves live in the game's own folder inside your user data directory, and
+  nowhere else:</p>
+  <ul>
+    <li><code>~/Library/Application Support/Godot/app_userdata/Oceanstory- Spice Empire/</code>
+    &mdash; the Mac App Store build writes to
+    <code>~/Library/Containers/com.lei.oceanstory.mas/</code> instead, which is
+    the same idea in a sandboxed container.</li>
+  </ul>
+  <p>Inside it you will find <code>spice_slot_0.json</code> to
+  <code>spice_slot_9.json</code> (the ten runs), <code>season_meta.json</code>
+  (what carries over between seasons) and <code>ui_settings.cfg</code> (your
+  language and graphics settings). Copy that folder to back your runs up.
+  Uninstalling the game removes them.</p>
+  <p>There are ten slots, each on its own map. A new voyage retires the run
+  you were playing; the progress that survives a season stays.</p>
+
+  <h2>6. Common questions</h2>
+
+  <h3>&ldquo;The ship is too slow to get anywhere.&rdquo;</h3>
+  <p>Weight is the reason. Fresh water and food are heavy, and a hold full of
+  them is a slow ship. Carry what the trip needs, not a season's worth. The
+  ship panel (<code>V</code>) shows the weight you are carrying and what it is
+  costing you in knots.</p>
+
+  <h3>&ldquo;I keep running out of food.&rdquo;</h3>
+  <p>You need grain as well as salt meat &mdash; five days of nothing but meat
+  and the crew starts to fail, and a failing crew sails slowly and dies
+  quickly. A contract's route tells you the days at sea before you accept it;
+  the yard sells the provisions for exactly that trip.</p>
+
+  <h3>&ldquo;My cannon will not fire.&rdquo;</h3>
+  <p>The guns only fire at a marked target. Put the cursor on a hostile ship and
+  press the mark key, then hold the fire key to charge. Each side reloads on
+  its own, so a broadside takes four seconds a gun.</p>
+
+  <h3>&ldquo;The port is closed.&rdquo;</h3>
+  <p>Sometimes it is quarantine, sometimes it is a blockade in a war between two
+  powers, and sometimes it is simply that the port does not trade. The captain's
+  log says which, and the chart shows the war line.</p>
+
+  <h3>&ldquo;I lost my run.&rdquo;</h3>
+  <p>Check the other nine slots first &mdash; each is a separate run on a
+  separate map. If the file is gone, it was deleted with the game.</p>
+
+  <h2>7. Known issues</h2>
+  <ul>
+    <li>On some Macs the first launch takes a few seconds longer while the
+    shaders are compiled. It only happens once.</li>
+    <li>A gamepad connected while the game is running is picked up on the next
+    screen change, not instantly.</li>
+    <li>On a display larger than 2880&times;1800 the interface is scaled up
+    rather than cropped, so no text is lost.</li>
+  </ul>
+
+  <p class="meta">Support page for the Mac App Store release of
+  <strong>Ocean Story &middot; Spice War</strong>. &copy; 2026 Lei Liu.</p>
+</section>
+
+<!-- ============================== 中文 ============================== -->
+<section id="zh" lang="zh-Hans" hidden>
+
+  <p class="lead"><strong>这个游戏完全离线运行。</strong>没有账号、没有服务器、也没有任何联网代码，
+  所以"连不上"永远不是问题：窗口开着，游戏就在跑。</p>
+
+  <h2>1. 怎么求助</h2>
+  <p>有问题就在本站仓库提 issue：
+  <a href="https://github.com/chanliu1983/oceanstory-site/issues/new">github.com/chanliu1983/oceanstory-site/issues</a>。
+  中文英文都行。请说明你当时在做什么、你以为会发生什么、实际发生了什么；
+  如果是画面问题，附一张截图或一段短录屏。录屏很简单：按
+  <code>Shift</code> + <code>Cmd</code> + <code>5</code> 选窗口即可。</p>
+
+  <h2>2. 运行要求</h2>
+  <table>
+    <tr><th>macOS</th><td>13.0 或更高（Ventura）</td></tr>
+    <tr><th>处理器</th><td>Apple 芯片与 Intel 都可以</td></tr>
+    <tr><th>硬盘</th><td>约 300 MB</td></tr>
+    <tr><th>网络</th><td>不需要，也不会用到</td></tr>
+    <tr><th>手柄</th><td>可选。任何标准蓝牙或 USB 手柄</td></tr>
+  </table>
+  <p>如果游戏完全打不开，用"控制台"应用启动它，或者在终端里运行：
+  <code>/Applications/Oceanstory.app/Contents/MacOS/Oceanstory --quit-after 900</code>，
+  输出会告诉你卡在哪里。机器没连网不是打不开的原因。</p>
+
+  <h2>3. 操作</h2>
+  <table>
+    <tr><th>航行与转向</th><td><code>W</code> / <code>A</code> / <code>S</code> / <code>D</code>，或左摇杆</td></tr>
+    <tr><th>缩放</th><td>鼠标滚轮、<code>-</code> / <code>=</code>，或右摇杆</td></tr>
+    <tr><th>战术图</th><td><code>T</code></td></tr>
+    <tr><th>船面板</th><td><code>V</code></td></tr>
+    <tr><th>百科</th><td><code>F1</code></td></tr>
+    <tr><th>船长日志</th><td><code>L</code></td></tr>
+    <tr><th>上膛开炮</th><td><code>空格</code>（按住蓄力，松开发射）</td></tr>
+    <tr><th>菜单 / 返回</th><td><code>START</code> 或 <code>Esc</code></td></tr>
+    <tr><th>按键图例</th><td><code>?</code></td></tr>
+  </table>
+  <p>每个界面都能用键盘或手柄到达，鼠标从来不是必需的——它只是海图和菜单上的便利。</p>
+
+  <h2>4. 界面语言</h2>
+  <p>中英文在同一个版本里。随时可以在主菜单（Options）里切换，航行中也可以从暂停菜单切换，选择会被记住。</p>
+
+  <h2>5. 存档在哪</h2>
+  <p>存档只在这个游戏自己的文件夹里，别的地方没有：</p>
+  <ul>
+    <li><code>~/Library/Application Support/Godot/app_userdata/Oceanstory- Spice Empire/</code>
+    ——Mac App Store 版会写在
+    <code>~/Library/Containers/com.lei.oceanstory.mas/</code> 里，原理一样，只是被沙盒收着。</li>
+  </ul>
+  <p>里面是 <code>spice_slot_0.json</code> 到 <code>spice_slot_9.json</code>（十个档）、
+  <code>season_meta.json</code>（跨季保留的东西）和 <code>ui_settings.cfg</code>（语言与画面设置）。
+  想备份就把这个文件夹复制走；卸载游戏会一起删掉。</p>
+  <p>十个档各自一张地图。开新航程会结束你正在玩的那一局，跨季保留的进度不会丢。</p>
+
+  <h2>6. 常见问题</h2>
+
+  <h3>「船太慢，到不了。」</h3>
+  <p>因为重量。淡水和粮食很重，满舱就是慢船。带上这趟需要的量，不要带一整季的量。
+  船面板（<code>V</code>）上写着当前载重，以及它让你损失了多少节。</p>
+
+  <h3>「老是缺粮。」</h3>
+  <p>光吃咸肉不行——连续五天只有肉，船员就开始垮，垮了的船更慢，死得更快。
+  契约卡上的航线会写清楚要跑几天，接之前先看；船厂里卖的补给刚好够这一趟。</p>
+
+  <h3>「炮打不出去。」</h3>
+  <p>炮只会打被标记的目标。把光标移到敌船上按标记键，再按住开炮键蓄力。
+  左右两舷分别装填，一轮齐射每门炮要四秒。</p>
+
+  <h3>「港口进不去。」</h3>
+  <p>有时是检疫，有时是两个势力开战设的封锁，有时是这个港本身不贸易。
+  船长日志会写原因，海图上也能看到那条战争线。</p>
+
+  <h3>「我这一局没了。」</h3>
+  <p>先看看另外九个档——每一档都是独立的航程、独立的地图。
+  如果文件真的不在了，那它是被你删掉的，或者随游戏一起卸载了。</p>
+
+  <h2>7. 已知问题</h2>
+  <ul>
+    <li>部分 Mac 第一次启动会慢几秒，因为要编译着色器。只会有这一次。</li>
+    <li>游戏运行中才插上的手柄，要切一次界面才会被识别。</li>
+    <li>屏幕大于 2880&times;1800 时界面是等比放大而不是裁切，所以不会丢字。</li>
+  </ul>
+
+  <p class="meta">《Ocean Story &middot; Spice War》Mac App Store 版的支持页。
+  © 2026 Lei Liu，保留所有权利。</p>
+</section>
+
+</main>
+</div>
+
+<script>
+(function () {
+  var en = document.getElementById('en');
+  var zh = document.getElementById('zh');
+  var btnEn = document.getElementById('btn-en');
+  var btnZh = document.getElementById('btn-zh');
+  var title = document.getElementById('h-title');
+
+  // English by default, and English is what stays visible if this script
+  // never runs: the <section id="zh" hidden> attribute means a JS-disabled
+  // reader still gets a complete page rather than a blank one.
+  function set(lang) {
+    var z = lang === 'zh';
+    en.hidden = z;
+    zh.hidden = !z;
+    btnEn.setAttribute('aria-pressed', String(!z));
+    btnZh.setAttribute('aria-pressed', String(z));
+    document.documentElement.lang = z ? 'zh-Hans' : 'en';
+    title.textContent = z ? '支持' : 'Support';
+  }
+
+  btnEn.addEventListener('click', function () { set('en'); });
+  btnZh.addEventListener('click', function () { set('zh'); });
+})();
+</script>
+</body>
+</html>
