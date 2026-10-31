@@ -66,6 +66,8 @@ Raw, full-resolution captures live in [`/screenshots`](screenshots) — no text 
 | A harbour and its prices. The stock column is the whole game in one table. | A storm over the harbour. The season's pirate king does not wait for you to be ready. |
 | ![Night watch](screenshots/09-night.png) | ![The Chinese title screen](screenshots/01-title-zh.png) |
 | Night watch. The stars are out and the sea is on its own. | The same title screen, in Chinese — the marketing page swaps it for the Chinese one. |
+| ![People on the map](screenshots/10-people.png) | ![Naliya's two answers](screenshots/11-naliya.png) |
+| Everyone you have met goes on the map: where she is, what she thinks of you, and what she wants. | Princess Naliya. She gives you two ways to answer, and one of them costs you. |
 
 The page also runs a **day-cycle strip** — golden hour, sunset, afterglow, blue hour,
 night, predawn — cut from the same captures (`assets/day-*.jpg`).
@@ -76,7 +78,7 @@ App Store assets live in [`/appstore`](appstore): the ten product-page screensho
 
 ## The game in one paragraph
 
-Oceanstory is a sailing roguelike set in the 17th-century Spice Islands, where nutmeg and clove are worth more than gold. A season is one long voyage: a chain of contracts that arrives as a route rather than a list, so every port offers two or three ways on, each with its own days at sea, its own pay and its own rumours. The monsoon window is thirty days, sixty or ninety, and when it closes the season ends with whatever you are holding. The archipelago is alive while you are at sea — people eat, leave and arrive, prices follow them, powers go to war over harbours and blockade the roads you meant to use, and twelve merchant hulls arbitrage the difference between two islands without asking you. Win by any one of five checklists: sink the pirate king and deliver his treasure, grow a trade empire, make a diplomatic alliance, walk the old places' secrets, or own three spice plantations and feed the ports. Six hulls from a twelve-metre caravel to a ship of the line, broadside guns loaded separately down each side, three kinds of shot, and a hold that carries your provisions — so the way you fill it decides how fast you sail and how long you last. English and Chinese, keyboard and gamepad. And the archipelago keeps evolving: the harbours you emptied, the prices you broke and the ports you closed are all still there, waiting for the next season.
+Oceanstory is a sailing roguelike set in the 17th-century Spice Islands, where nutmeg and clove are worth more than gold. A season is one long voyage: a chain of contracts that arrives as a route rather than a list, so every port offers two or three ways on, each with its own days at sea, its own pay and its own rumours. The monsoon window is thirty days, sixty or ninety, and when it closes the season ends with whatever you are holding. The archipelago is alive while you are at sea — people eat, leave and arrive, prices follow them, powers go to war over harbours and blockade the roads you meant to use, and nine merchant hulls arbitrage the difference between two islands without asking you. Twenty-four named people wait in the taverns with errands of their own: they keep their own account of you, a promise to them goes late, and when a line ends the letters keep coming — some of them stop waiting. Win by any one of five checklists: sink the pirate king and deliver his treasure, grow a trade empire, make a diplomatic alliance, walk the old places' secrets, or own three spice plantations and feed the ports. Six hulls from a twelve-metre caravel to a ship of the line, broadside guns loaded separately down each side, three kinds of shot, and a hold that carries your provisions — so the way you fill it decides how fast you sail and how long you last. English and Chinese, keyboard and gamepad. And the archipelago keeps evolving: the harbours you emptied, the prices you broke and the ports you closed are all still there, waiting for the next season.
 
 © 2026 Lei Liu. All rights reserved.
 
@@ -144,10 +146,12 @@ GitHub 的 issue 没有语言切换，但也不需要 —— 用哪种语言顺�
 | 战术地图。城镇、势力、商路、传闻。 | 六种船张着帆。每一条每天都要在海上吃水、吃粮。 |
 | ![舷炮齐射](screenshots/05-broadside.png) | ![百科](screenshots/06-codex.png) |
 | 两边轮流开火。炮舱是全船唯一暖和的地方。 | 百科——十三类、一百来条，每一条都配了画。 |
-| ![港口交易](screenshots/07-trade.png) | ![船厂](screenshots/08-yard.png) |
-| 港口和它的价格。库存那一栏就是整个游戏。 | 船厂：按件修、给船改装、换一条船接手指令。 |
-| ![夜班](screenshots/09-night.png) | |
-| 夜班。星星出来了，海自己待着。 | |
+| ![港口交易](screenshots/07-trade.png) | ![风暴压港](screenshots/08-storm.png) |
+| 港口和它的价格。库存那一栏就是整个游戏。 | 港口上空的风暴。本季的海盗王不会等你准备好。 |
+| ![夜班](screenshots/09-night.png) | ![中文标题画面](screenshots/01-title-zh.png) |
+| 夜班。星星出来了，海自己待着。 | 同一个标题画面，中文版——官网在中文界面下换成这张。 |
+| ![海图上的人](screenshots/10-people.png) | ![纳莉娅的两个回答](screenshots/11-naliya.png) |
+| 你认识的人都会上地图：她在哪、她怎么看你、她要什么。 | 纳莉娅公主。她给你两个回答，其中一个要付代价。 |
 
 App Store 素材在 [`/appstore`](appstore)：中英文各十张产品页截图（2880×1800，Apple 要的尺寸，它会自己缩放到其它 Mac 尺寸），外加 1920×1080 的 App Preview 视频。前三张是 Apple 放在搜索结果里的。
 
@@ -155,7 +159,7 @@ App Store 素材在 [`/appstore`](appstore)：中英文各十张产品页截图�
 
 ## 一段话介绍
 
-《海洋物语 · 香料帝国》是一款 17 世纪香料群岛背景的航海 Roguelike —— 那年头，肉豆蔻和丁香比黄金还贵。一季就是一趟长途：契约不是任务列表，而是一条路线，所以每到一个港都给你两三个下一站的选择，各自有各的航行天数、各自的报酬、各自的传闻。季风窗是三十天、六十天或九十天，窗一关，这季就以你手里剩下的东西结算。你在海上的时候，这片群岛是活的 —— 人要吃饭、会走、会来，价钱跟着走，势力会为一座港口开战，把你打算走的路封起来，十二艘商船则不问你就在两座岛之间套利。五张清单任选其一通关：击沉海盗王并送上宝藏、做大贸易帝国、达成外交同盟、走遍古迹的秘密、或者拥有三座香料庄园并供应全港。六种船，从十二米的快帆船到主力舰；左右两舷分别装填的舷炮、三种弹丸，以及一个装你补给的货舱 —— 怎么装，决定你多快和多久。英文与中文，键盘与手柄。而且这片群岛一直在演化：你掏空的港、抬崩的价、关掉的门，下一季都还在那儿。
+《海洋物语 · 香料帝国》是一款 17 世纪香料群岛背景的航海 Roguelike —— 那年头，肉豆蔻和丁香比黄金还贵。一季就是一趟长途：契约不是任务列表，而是一条路线，所以每到一个港都给你两三个下一站的选择，各自有各的航行天数、各自的报酬、各自的传闻。季风窗是三十天、六十天或九十天，窗一关，这季就以你手里剩下的东西结算。你在海上的时候，这片群岛是活的 —— 人要吃饭、会走、会来，价钱跟着走，势力会为一座港口开战，把你打算走的路封起来，九艘商船则不问你就在两座岛之间套利。酒馆里还有二十四个有名有姓的人在等你，各有各的事要办：她记着你做过什么，承诺会过期，一条线结束后信还会来——有些人就等不到你了。五张清单任选其一通关：击沉海盗王并送上宝藏、做大贸易帝国、达成外交同盟、走遍古迹的秘密、或者拥有三座香料庄园并供应全港。六种船，从十二米的快帆船到主力舰；左右两舷分别装填的舷炮、三种弹丸，以及一个装你补给的货舱 —— 怎么装，决定你多快和多久。英文与中文，键盘与手柄。而且这片群岛一直在演化：你掏空的港、抬崩的价、关掉的门，下一季都还在那儿。
 
 © 2026 Lei Liu。保留所有权利。
 
